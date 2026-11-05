@@ -1,0 +1,7 @@
+# facilityId|facilityName|TYPE
+B1|Badminton Court 1|BADMINTON
+B2|Badminton Court 2|BADMINTON
+B3|Badminton Court 3|BADMINTON
+B4|Badminton Court 4|BADMINTON
+F1|Futsal Court 1|FUTSAL
+F2|Futsal Court 2|FUTSAL

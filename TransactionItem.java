@@ -1,0 +1,53 @@
+/**
+ * TransactionItem - one line of a rental transaction (item + quantity).
+ *
+ * COMPOSITION: a TransactionItem is created and owned by a RentalTransaction.
+ * It has no meaning without its transaction, so its constructor is package-private
+ * and only RentalTransaction creates it.
+ *
+ * The unit price is copied when the item is added, so later catalogue price
+ * changes do not change old bills.
+ */
+public class TransactionItem {
+
+    private final RentalItem item;
+    private final double unitPrice;
+    private int quantity;
+
+    TransactionItem(RentalItem item, int quantity, double unitPrice) {
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be at least 1.");
+        }
+        this.item = item;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
+
+    public RentalItem getItem() {
+        return item;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    void setQuantity(int quantity) {
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be at least 1.");
+        }
+        this.quantity = quantity;
+    }
+
+    void increaseQuantity(int extra) {
+        setQuantity(this.quantity + extra);
+    }
+
+    /** Subtotal = rental price x quantity (calculated automatically). */
+    public double getSubtotal() {
+        return Money.round(unitPrice * quantity);
+    }
+}

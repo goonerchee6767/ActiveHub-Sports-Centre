@@ -1,0 +1,9 @@
+# CATEGORY|code|name|price|facilityType(for FACILITY only)
+EQUIPMENT|E001|Badminton Racquet|5.00
+EQUIPMENT|E002|Shuttlecock Set (6 pcs)|8.00
+EQUIPMENT|E003|Futsal Ball|6.00
+EQUIPMENT|E004|Goalkeeper Gloves (pair)|4.00
+FACILITY|F001|Badminton Court (per hour)|20.00|BADMINTON
+FACILITY|F002|Futsal Court (per hour)|90.00|FUTSAL
+ACCESSORY|A001|Sports Towel|3.00
+SERVICE|S001|Locker & Shower Access|5.00
