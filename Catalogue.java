@@ -3,10 +3,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Catalogue - the rental catalogue of ActiveHub Sports Centre.
- *
- * AGGREGATION: a Catalogue holds many RentalItem objects (1 to many),
- * but the items are created outside (by DataStore) and can exist on their own.
+ * Catalogue 
  */
 public class Catalogue {
 
@@ -22,7 +19,7 @@ public class Catalogue {
         items.add(item);
     }
 
-    /** Finds an item by its code (case-insensitive). Returns null if not found. */
+   
     public RentalItem findItem(String itemCode) {
         if (itemCode == null) {
             return null;
@@ -35,7 +32,7 @@ public class Catalogue {
         return null;
     }
 
-    /** Finds the hourly facility package that matches a facility type. */
+   
     public FacilityPackage findPackageFor(FacilityType type) {
         for (RentalItem item : items) {
             if (item instanceof FacilityPackage && ((FacilityPackage) item).getFacilityType() == type) {
@@ -63,7 +60,7 @@ public class Catalogue {
         return items.size();
     }
 
-    /** Prints the whole catalogue grouped by category so staff can read it easily. */
+   
     public void display() {
         String line = InputHelper.repeat('=', 72);
         System.out.println(line);
@@ -85,7 +82,7 @@ public class Catalogue {
         System.out.println("Total items: " + items.size());
     }
 
-    /** Prints only one category. */
+    
     public void displayCategory(ItemCategory category) {
         List<RentalItem> list = getItemsByCategory(category);
         System.out.println("[" + category.getLabel() + "]");
