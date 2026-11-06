@@ -1,9 +1,4 @@
-/**
- * Promotion C - Equipment Bundle Discount.
- * Fixed RM20 off when the transaction has at least ONE facility/court booking
- * AND 3 or more EQUIPMENT units (same or different items).
- * Accessories, facility packages and add-on services are not counted.
- */
+
 public class EquipmentBundlePromotion extends Promotion {
 
     private static final int MIN_EQUIPMENT_UNITS = 3;
