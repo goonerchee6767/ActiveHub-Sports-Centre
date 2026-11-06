@@ -10,17 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * DataStore - saves and loads all data using text files in a simple
- * pipe-delimited line format (one record per line).
- *
- *   catalogue.txt         CATEGORY|code|name|price[|facilityType]
- *   facilities.txt        id|name|TYPE
- *   bookings.txt          id|name|contact|facilityId|date|time|hours|participants|status
- *   transactions.txt      id|name|contact|bookingId|date|time|participants|status
- *   transaction_items.txt transactionId|itemCode|quantity|unitPrice
- *   payments.txt          paymentId|transactionId|METHOD|amount|dateTime|details...
- */
+
 public class DataStore {
 
     private static final String CATALOGUE_FILE = "catalogue.txt";
@@ -41,7 +31,7 @@ public class DataStore {
         }
     }
 
-    // ------------------------------------------------------------------ low-level file helpers
+    
 
     private boolean exists(String fileName) {
         return Files.exists(dataFolder.resolve(fileName));
@@ -113,7 +103,7 @@ public class DataStore {
         return catalogue;
     }
 
-    /** The group's 8 rental items: 4 equipment, 2 facility packages, 2 accessories / add-on services. */
+   
     private void createDefaultCatalogue(Catalogue catalogue) {
         catalogue.addItem(new EquipmentItem("E001", "Badminton Racquet", 5.00));
         catalogue.addItem(new EquipmentItem("E002", "Shuttlecock Set (6 pcs)", 8.00));
@@ -197,7 +187,7 @@ public class DataStore {
         Map<String, RentalTransaction> map = new HashMap<>();
         Map<String, TransactionStatus> savedStatus = new HashMap<>();
 
-        // 1. transaction headers (all start as OPEN so items can be restored)
+       
         for (String line : readLines(TRANSACTION_FILE)) {
             try {
                 String[] p = line.split("\\|", -1);
@@ -212,7 +202,7 @@ public class DataStore {
             }
         }
 
-        // 2. transaction items
+        
         for (String line : readLines(ITEM_FILE)) {
             try {
                 String[] p = line.split("\\|", -1);
@@ -227,14 +217,14 @@ public class DataStore {
             }
         }
 
-        // 3. re-evaluate promotions (rules are deterministic, so the result is the same as before)
+        
         for (RentalTransaction tx : map.values()) {
             if (!tx.isEmpty()) {
                 engine.applyBestPromotion(tx);
             }
         }
 
-        // 4. payments -> mark as PAID
+       
         for (String line : readLines(PAYMENT_FILE)) {
             try {
                 Payment payment = Payment.fromFileLine(line);
@@ -248,7 +238,7 @@ public class DataStore {
             }
         }
 
-        // 5. cancelled transactions
+      
         for (RentalTransaction tx : map.values()) {
             if (savedStatus.get(tx.getTransactionId()) == TransactionStatus.CANCELLED
                     && tx.getStatus() == TransactionStatus.OPEN) {
