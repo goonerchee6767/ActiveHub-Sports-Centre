@@ -4,10 +4,6 @@ import java.time.temporal.ChronoUnit;
 
 /**
  * Payment - ABSTRACT base class for all payment methods.
- *
- * POLYMORPHISM: the system creates a CashPayment, CardPayment or EWalletPayment
- * but stores it in a Payment variable and calls payment.processPayment(...).
- * Each subclass collects and validates its own details.
  */
 public abstract class Payment implements Storable {
 
@@ -52,22 +48,19 @@ public abstract class Payment implements Storable {
         this.paymentDateTime = dateTime;
     }
 
-    /** Display name e.g. "Cash". */
+   
     public abstract String getMethodName();
 
-    /** Code used in the text file e.g. "CASH". */
+   
     public abstract String getMethodCode();
 
-    /**
-     * Collects and validates the details needed for this payment method.
-     * @return true if payment succeeded, false if the staff cancelled it.
-     */
+    
     public abstract boolean processPayment(InputHelper input);
 
-    /** Extra lines printed on the receipt (each line ends with a newline). */
+  
     public abstract String getPaymentDetails();
 
-    /** Method-specific fields for the text file (pipe-delimited). */
+   
     protected abstract String getExtraFileFields();
 
     @Override
@@ -76,7 +69,7 @@ public abstract class Payment implements Storable {
                 + String.format("%.2f", amount) + "|" + paymentDateTime + "|" + getExtraFileFields();
     }
 
-    /** Factory method - rebuilds the correct Payment subclass from a saved file line. */
+   
     public static Payment fromFileLine(String line) {
         String[] p = line.split("\\|", -1);
         String id = p[0];
