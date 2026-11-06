@@ -1,6 +1,4 @@
-/**
- * ItemCategory - the four categories of items in the rental catalogue.
- */
+
 public enum ItemCategory {
     EQUIPMENT("Equipment", "Equipment"),
     FACILITY("Facility / Court Package", "Facility"),
