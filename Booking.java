@@ -2,15 +2,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- * Booking - a reservation of one Facility by one Customer for a time slot.
- *
- * Dates and times are stored using java.time (LocalDate / LocalTime / DayOfWeek),
- * NOT strings, so they can be compared correctly for double-booking checks
- * and promotion eligibility.
- *
- * ASSOCIATION: Booking -> Customer (1) and Booking -> Facility (1).
- */
 public class Booking implements Storable {
 
     private final String bookingId;
@@ -87,11 +78,7 @@ public class Booking implements Storable {
         return status == BookingStatus.CONFIRMED;
     }
 
-    /**
-     * Returns true if this (active) booking uses the same facility on the same date
-     * and its time range overlaps [start, end).
-     * Two ranges overlap when: newStart < existingEnd AND existingStart < newEnd.
-     */
+    
     public boolean overlapsWith(Facility otherFacility, LocalDate date, LocalTime start, LocalTime end) {
         return isActive()
                 && facility.getFacilityId().equals(otherFacility.getFacilityId())
@@ -107,7 +94,7 @@ public class Booking implements Storable {
         status = BookingStatus.CANCELLED;
     }
 
-    /** Used only when loading saved data from the text file. */
+  
     void restoreStatus(BookingStatus savedStatus) {
         this.status = savedStatus;
     }
