@@ -5,16 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-/**
- * RentalTransaction - a customer's bill for a booking or walk-in request.
- *
- * OOP concepts:
- *  - COMPOSITION : owns a list of TransactionItem (created inside addItem()).
- *  - ASSOCIATION : refers to a Customer, an optional Booking, a PromotionResult
- *                  and a Payment.
- *  - ENCAPSULATION: items can only be changed through methods that check the
- *                  transaction is still OPEN.
- */
+
 public class RentalTransaction implements Storable {
 
     public static final double SERVICE_CHARGE_RATE = 0.10;
@@ -47,7 +38,7 @@ public class RentalTransaction implements Storable {
 
     // ------------------------------------------------------------------ item handling
 
-    /** Adds an item; if the same item already exists the quantity is increased. */
+    
     public void addItem(RentalItem item, int quantity) {
         ensureOpen();
         if (item == null) {
@@ -65,12 +56,12 @@ public class RentalTransaction implements Storable {
         promotionResult = null; // items changed -> promotions must be re-evaluated
     }
 
-    /** Used only when loading from file (keeps the original unit price). */
+   
     void restoreItem(RentalItem item, int quantity, double unitPrice) {
         items.add(new TransactionItem(item, quantity, unitPrice));
     }
 
-    /** Changes the quantity of an item. A quantity of 0 removes the item. */
+    
     public void updateQuantity(String itemCode, int newQuantity) {
         ensureOpen();
         TransactionItem line = findLine(itemCode);
@@ -122,12 +113,12 @@ public class RentalTransaction implements Storable {
         return Money.round(total);
     }
 
-    /** Facility / court charges only (used by Promotions A and B). */
+    
     public double getFacilityCharge() {
         return getChargeByCategory(ItemCategory.FACILITY);
     }
 
-    /** Total equipment units (accessories, services and facilities are NOT counted). */
+    
     public int getEquipmentQuantity() {
         int count = 0;
         for (TransactionItem line : items) {
@@ -155,7 +146,7 @@ public class RentalTransaction implements Storable {
         return Money.round(Math.max(0, getSubtotal() - getDiscount()));
     }
 
-    /** 10% service charge, calculated on the amount after the promotion discount. */
+    /** 10% service charge */
     public double getServiceCharge() {
         return Money.round(getAmountAfterDiscount() * SERVICE_CHARGE_RATE);
     }
@@ -183,7 +174,7 @@ public class RentalTransaction implements Storable {
         this.status = TransactionStatus.PAID;
     }
 
-    /** Used only when loading from file. */
+    
     void restorePayment(Payment savedPayment) {
         this.payment = savedPayment;
         this.status = TransactionStatus.PAID;
@@ -241,7 +232,7 @@ public class RentalTransaction implements Storable {
 
     // ------------------------------------------------------------------ output
 
-    /** Builds the full bill / receipt text. */
+   
     public String generateBill() {
         String thick = InputHelper.repeat('=', WIDTH);
         String thin = InputHelper.repeat('-', WIDTH);
@@ -329,7 +320,7 @@ public class RentalTransaction implements Storable {
         return InputHelper.repeat(' ', pad) + text;
     }
 
-    /** Summary row used in transaction lists. */
+    
     public String toSummaryRow() {
         return String.format("%-6s %-18s %-7s %-10s %5d %10.2f %10.2f  %-9s %s",
                 transactionId,
