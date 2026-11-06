@@ -1,5 +1,5 @@
 /**
- * CashPayment - cash payment with amount tendered and change.
+ * CashPayment 
  */
 public class CashPayment extends Payment {
 
