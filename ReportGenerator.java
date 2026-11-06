@@ -4,10 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * ReportGenerator - builds the end-of-day summary report for the manager.
- * ASSOCIATION: uses BookingManager and TransactionManager to read data.
- */
+
 public class ReportGenerator {
 
     private final BookingManager bookingManager;
@@ -146,7 +143,7 @@ public class ReportGenerator {
         System.out.println(thick);
     }
 
-    /** Returns the entry (or tied entries) with the highest count, as text. */
+    
     private static String topEntries(Map<String, Integer> counts, Map<String, String> names, String unit) {
         int max = 0;
         for (int value : counts.values()) {
