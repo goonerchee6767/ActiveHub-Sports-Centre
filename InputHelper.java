@@ -5,13 +5,9 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Scanner;
 
-/**
- * InputHelper - reads and validates all console input so the program
- * never crashes because of wrong input (letters instead of numbers, bad dates...).
- */
+
 public class InputHelper {
 
-    /** Strict format so invalid dates such as 2026-02-30 are rejected. */
     public static final DateTimeFormatter DATE_FORMAT =
             DateTimeFormatter.ofPattern("uuuu-MM-dd").withResolverStyle(ResolverStyle.STRICT);
     private static final DateTimeFormatter TIME_FORMAT =
@@ -23,7 +19,7 @@ public class InputHelper {
         this.scanner = scanner;
     }
 
-    /** Reads one trimmed line. */
+    
     public String readLine(String prompt) {
         System.out.print(prompt);
         if (!scanner.hasNextLine()) {
@@ -34,7 +30,7 @@ public class InputHelper {
         return scanner.nextLine().trim();
     }
 
-    /** Reads a non-empty text. The "|" character is replaced because it is the file separator. */
+   
     public String readText(String prompt) {
         while (true) {
             String value = readLine(prompt).replace("|", "/");
@@ -55,7 +51,7 @@ public class InputHelper {
         }
     }
 
-    /** Malaysian-style phone number: 9-12 digits, dashes/spaces allowed, optional leading +. */
+    
     public String readContactNumber(String prompt) {
         while (true) {
             String raw = readLine(prompt);
@@ -97,7 +93,7 @@ public class InputHelper {
         }
     }
 
-    /** Reads a date in yyyy-MM-dd format. If allowBlank is true, Enter means today. */
+   
     public LocalDate readDate(String prompt, boolean allowBlankForToday) {
         while (true) {
             String text = readLine(prompt);
@@ -112,7 +108,7 @@ public class InputHelper {
         }
     }
 
-    /** Reads a 24-hour time (e.g. 9:00 or 15:30). If defaultValue is not null, Enter uses it. */
+  
     public LocalTime readTime(String prompt, LocalTime defaultValue) {
         while (true) {
             String text = readLine(prompt);
