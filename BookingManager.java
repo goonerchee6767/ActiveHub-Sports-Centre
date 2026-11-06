@@ -5,11 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * BookingManager - manages facilities and bookings and prevents double booking.
- *
- * AGGREGATION: holds a list of Facility objects and a list of Booking objects.
- */
+
 public class BookingManager {
 
     public static final LocalTime OPENING_TIME = LocalTime.of(8, 0);
@@ -57,10 +53,7 @@ public class BookingManager {
 
     // ------------------------------------------------------------------ validation
 
-    /**
-     * Validates a requested time slot using java.time comparisons.
-     * @return null if valid, otherwise an error message.
-     */
+    
     public String validateSlot(LocalDate date, LocalTime start, int durationHours) {
         LocalDate today = LocalDate.now();
         if (date.isBefore(today)) {
@@ -86,7 +79,7 @@ public class BookingManager {
         return null;
     }
 
-    /** Returns the existing booking that clashes with the requested slot, or null if free. */
+  
     public Booking findConflict(Facility facility, LocalDate date, LocalTime start, int durationHours) {
         LocalTime end = start.plusHours(durationHours);
         for (Booking b : bookings) {
@@ -114,10 +107,7 @@ public class BookingManager {
 
     // ------------------------------------------------------------------ bookings
 
-    /**
-     * Creates and stores a new booking after validating the slot and
-     * checking that the facility is not already booked (duplicate check).
-     */
+   
     public Booking createBooking(Customer customer, Facility facility, LocalDate date, LocalTime start,
                                  int durationHours, int participants) {
         String error = validateSlot(date, start, durationHours);
@@ -140,7 +130,7 @@ public class BookingManager {
         return booking;
     }
 
-    /** Adds a booking that was loaded from the text file (no validation of past dates). */
+    
     void addLoadedBooking(Booking booking) {
         bookings.add(booking);
     }
@@ -157,7 +147,7 @@ public class BookingManager {
         return null;
     }
 
-    /** All bookings sorted by date then start time. */
+   
     public List<Booking> getBookings() {
         List<Booking> sorted = new ArrayList<>(bookings);
         sorted.sort(Comparator.comparing(Booking::getBookingDate).thenComparing(Booking::getStartTime));
@@ -190,7 +180,7 @@ public class BookingManager {
             try {
                 max = Math.max(max, Integer.parseInt(b.getBookingId().substring(2)));
             } catch (RuntimeException ignored) {
-                // ignore IDs that do not follow the BKnnnn pattern
+               
             }
         }
         return String.format("BK%04d", max + 1);
