@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * TransactionManager - creates, finds and lists rental transactions.
- * AGGREGATION: holds many RentalTransaction objects.
- */
+
 public class TransactionManager {
 
     private final List<RentalTransaction> transactions = new ArrayList<>();
@@ -40,7 +37,7 @@ public class TransactionManager {
         return null;
     }
 
-    /** Returns the (not cancelled) transaction linked to a booking, or null. */
+    
     public RentalTransaction findByBooking(String bookingId) {
         for (RentalTransaction tx : transactions) {
             if (tx.getBooking() != null && tx.getStatus() != TransactionStatus.CANCELLED
@@ -65,7 +62,7 @@ public class TransactionManager {
         return result;
     }
 
-    /** Transactions that were PAID on the given date. */
+   
     public List<RentalTransaction> getCompletedTransactionsOn(LocalDate date) {
         List<RentalTransaction> result = new ArrayList<>();
         for (RentalTransaction tx : transactions) {
@@ -77,7 +74,7 @@ public class TransactionManager {
         return result;
     }
 
-    /** OPEN transactions whose service date is the given date. */
+    
     public List<RentalTransaction> getOpenTransactionsFor(LocalDate date) {
         List<RentalTransaction> result = new ArrayList<>();
         for (RentalTransaction tx : getOpenTransactions()) {
