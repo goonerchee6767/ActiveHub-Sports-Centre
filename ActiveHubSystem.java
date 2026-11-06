@@ -26,7 +26,7 @@ public class ActiveHubSystem {
     private final ReportGenerator reportGenerator;
 
     public ActiveHubSystem() {
-        // Promotions are registered as the abstract type Promotion (polymorphism)
+        
         promotionEngine.addPromotion(new OffPeakSaverPromotion());
         promotionEngine.addPromotion(new TeamBookingPromotion());
         promotionEngine.addPromotion(new EquipmentBundlePromotion());
@@ -145,11 +145,6 @@ public class ActiveHubSystem {
         }
     }
 
-    /**
-     * Asks for all booking details, checks for double booking and saves the booking.
-     * @param fixedDate if not null (walk-in), the booking date is fixed to this date
-     * @return the new booking, or null if cancelled / not possible
-     */
     private Booking createBookingInteractive(LocalDate fixedDate) {
         String name = input.readName("Customer name               : ");
         String contact = input.readContactNumber("Contact number              : ");
@@ -271,7 +266,6 @@ public class ActiveHubSystem {
         System.out.println("Total: " + list.size() + " booking(s)");
     }
 
-    /** Shows an hourly grid of every court for a date: X = booked, . = free. */
     private void showFacilitySchedule() {
         LocalDate date = input.readDate("Enter date (yyyy-MM-dd, Enter = today): ", true);
         InputHelper.printHeader("FACILITY SCHEDULE - " + date + " (" + date.getDayOfWeek() + ")");
@@ -520,7 +514,6 @@ public class ActiveHubSystem {
         finishTransactionUpdate(tx, true);
     }
 
-    /** Lets staff add multiple catalogue items with quantities to a transaction. */
     private void addItemsLoop(RentalTransaction tx) {
         catalogue.display();
         System.out.println("Note: facility/court packages are charged automatically from bookings.");
@@ -556,7 +549,6 @@ public class ActiveHubSystem {
         }
     }
 
-    /** Re-evaluates promotions after any change, saves and shows the bill. */
     private void finishTransactionUpdate(RentalTransaction tx, boolean isNew) {
         if (tx.isEmpty()) {
             if (isNew) {
@@ -569,7 +561,7 @@ public class ActiveHubSystem {
             dataStore.saveTransactions(transactionManager);
             return;
         }
-        promotionEngine.applyBestPromotion(tx); // promotions are evaluated whenever a transaction is prepared
+        promotionEngine.applyBestPromotion(tx); 
         dataStore.saveTransactions(transactionManager);
         System.out.println();
         System.out.println(tx.generateBill());
@@ -718,7 +710,7 @@ public class ActiveHubSystem {
             System.out.println("  >> This transaction has no items to pay for.");
             return;
         }
-        promotionEngine.applyBestPromotion(tx); // always use the latest best promotion
+        promotionEngine.applyBestPromotion(tx); 
         System.out.println(tx.generateBill());
         if (!input.confirm("Proceed to payment of " + Money.format(tx.getFinalAmount()) + "? (Y/N): ")) {
             System.out.println("Payment not made. Transaction remains OPEN.");
@@ -738,7 +730,7 @@ public class ActiveHubSystem {
 
         String paymentId = transactionManager.generatePaymentId();
         double amount = tx.getFinalAmount();
-        Payment payment; // declared as the abstract type -> polymorphism
+        Payment payment; 
         if (method == 1) {
             payment = new CashPayment(paymentId, tx.getTransactionId(), amount);
         } else if (method == 2) {
@@ -747,7 +739,7 @@ public class ActiveHubSystem {
             payment = new EWalletPayment(paymentId, tx.getTransactionId(), amount);
         }
 
-        if (payment.processPayment(input)) { // runs the subclass version at runtime
+        if (payment.processPayment(input)) { 
             tx.markPaid(payment);
             dataStore.saveTransactions(transactionManager);
             System.out.println();
