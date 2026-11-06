@@ -1,7 +1,4 @@
-/**
- * AddOnItem - accessories (e.g. towel) and add-on services (e.g. locker).
- * These are NOT counted as equipment units for Promotion C.
- */
+
 public class AddOnItem extends RentalItem {
 
     private final ItemCategory category;
