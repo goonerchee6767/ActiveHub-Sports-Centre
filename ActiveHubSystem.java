@@ -5,14 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * ActiveHubSystem - main class and console menu of the
- * ActiveHub Sports Facility Booking, Equipment Rental & Promotion System.
- *
- * Compile : javac *.java
- * Run     : java ActiveHubSystem
- * Data is stored in text files inside the "data" folder.
- */
+
 public class ActiveHubSystem {
 
     private static final int MAX_ITEM_QUANTITY = 20;
