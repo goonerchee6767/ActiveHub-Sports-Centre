@@ -1,6 +1,4 @@
-/**
- * Facility - a physical court / activity space, e.g. "Badminton Court 1" (B1).
- */
+
 public class Facility implements Storable {
 
     private final String facilityId;
