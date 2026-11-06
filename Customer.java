@@ -1,7 +1,4 @@
-/**
- * Customer - a person who books a facility or rents items.
- * Encapsulation: private fields, read-only getters.
- */
+
 public class Customer {
 
     private final String name;
