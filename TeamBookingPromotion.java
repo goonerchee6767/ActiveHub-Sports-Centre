@@ -1,8 +1,6 @@
 /**
  * Promotion B - Team Booking Reward.
- * For a booking with 8 or more participants, RM5 per participant,
- * capped at RM60 per transaction and never more than the facility charge
- * (so the facility charge cannot go below RM0).
+
  */
 public class TeamBookingPromotion extends Promotion {
 
