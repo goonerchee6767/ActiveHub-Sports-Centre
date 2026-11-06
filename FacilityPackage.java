@@ -1,5 +1,5 @@
 /**
- * FacilityPackage - an hourly court / facility package (e.g. Badminton Court per hour).
+ * FacilityPackage - an hourly court / facility package .
  * Linked to a FacilityType so the system knows which package to charge
  * when a booking for that type of court is turned into a transaction.
  */
