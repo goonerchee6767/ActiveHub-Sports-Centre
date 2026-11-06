@@ -2,10 +2,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * PromotionResult - outcome of evaluating all promotions for one transaction:
- * every eligible promotion with its saving, and the ONE selected promotion.
- */
+
 public class PromotionResult {
 
     private final Map<Promotion, Double> eligibleSavings = new LinkedHashMap<>();
@@ -25,7 +22,7 @@ public class PromotionResult {
         return Collections.unmodifiableMap(eligibleSavings);
     }
 
-    /** Saving for a promotion, or null if it was not eligible. */
+    
     public Double getSavingFor(Promotion promotion) {
         return eligibleSavings.get(promotion);
     }
