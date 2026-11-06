@@ -1,5 +1,5 @@
 /**
- * BookingStatus - life-cycle states of a facility booking.
+ * BookingStatus
  */
 public enum BookingStatus {
     CONFIRMED,
