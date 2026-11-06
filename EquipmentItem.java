@@ -1,8 +1,4 @@
-/**
- * EquipmentItem - sports equipment such as racquets and balls.
- * Inherits from RentalItem and overrides the abstract methods.
- * Equipment units are counted for Promotion C (Equipment Bundle Discount).
- */
+
 public class EquipmentItem extends RentalItem {
 
     public EquipmentItem(String itemCode, String itemName, double rentalPrice) {
