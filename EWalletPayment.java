@@ -1,9 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * EWalletPayment - payment through an e-wallet provider.
- */
+
 public class EWalletPayment extends Payment {
 
     private static final String[] PROVIDERS = {"Touch 'n Go eWallet", "GrabPay", "Boost", "ShopeePay"};
@@ -16,7 +14,7 @@ public class EWalletPayment extends Payment {
         super(paymentId, transactionId, amount);
     }
 
-    /** Constructor used when loading from file. */
+    
     EWalletPayment(String paymentId, String transactionId, double amount, String provider,
                    String walletPhone, String referenceNo) {
         super(paymentId, transactionId, amount);
