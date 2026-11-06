@@ -3,10 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Random;
 
-/**
- * CardPayment - credit or debit card payment.
- * Only the last 4 digits of the card number are stored (masked).
- */
+
 public class CardPayment extends Payment {
 
     private static final Random RANDOM = new Random();
@@ -20,7 +17,7 @@ public class CardPayment extends Payment {
         super(paymentId, transactionId, amount);
     }
 
-    /** Constructor used when loading from file. */
+   
     CardPayment(String paymentId, String transactionId, double amount, String cardType,
                 String maskedCardNumber, String approvalCode) {
         super(paymentId, transactionId, amount);
